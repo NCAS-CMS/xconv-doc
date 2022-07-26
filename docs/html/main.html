@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Xconv main window &#8212; Xconv 1.94 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Open files window" href="open.html" />
+    <link rel="prev" title="Command line arguments" href="cmd_line_args.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="open.html" title="Open files window"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cmd_line_args.html" title="Command line arguments"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="xconv-main-window">
+<span id="main"></span><h1>Xconv main window<a class="headerlink" href="#xconv-main-window" title="Permalink to this headline">¶</a></h1>
+<p>Starting xconv brings up the <strong>Xconv main</strong> window.</p>
+<img alt="Xconv main window" src="_images/xconv_1.93_main.png" />
+<p>The top left of the <strong>Xconv main</strong> window is used to select the output
+file name and the output file type. There are 2 output formats
+supported, netCDF and grads. The output type which is selected by default
+can be changed via the <a class="reference internal" href="setup.html#setup-defaults"><span class="std std-ref">Setup xconv defaults window</span></a>.</p>
+<p>Below the output file name and file type selection are 4 buttons. The
+<strong>Open</strong> button brings up the <a class="reference internal" href="open.html#open"><span class="std std-ref">Open files window</span></a>, which is used to read data files
+into xconv. The <strong>Setup</strong> button brings up the <a class="reference internal" href="setup.html#setup"><span class="std std-ref">Setup xconv windows</span></a> menu window, which
+is used to customise various aspects of xconv, including fonts, colours and
+output options. The <strong>Clear</strong> button removes all information about files
+which have been read in by xconv. The <strong>Quit</strong> button quits xconv and
+removes all xconv windows. When input data is being converted and written to
+an output file, the <strong>Quit</strong> button changes into an <strong>Interrupt</strong> button,
+which if clicked will abort the data conversion and writing.</p>
+<p>Below these 4 buttons is a box listing all the fields which have been read into
+xconv. It shows the number of x,y,z and t dimension values and the field title.
+When reading in multiple files which have the same fields but at different
+times xconv will only have one entry for each field, but with all the time
+values. Using the <a class="reference internal" href="setup.html#setup-defaults"><span class="std std-ref">Setup xconv defaults window</span></a>, the field
+title can can be changed to consist of a long field title, a short field title
+or both, provided the selected titles are available. If the data comes from
+files produced by the Met. Office Unified model, the long field title can be
+generated either by using the PP field code or by using the STASH code, again
+selectable via the <a class="reference internal" href="setup.html#setup-defaults"><span class="std std-ref">Setup xconv defaults window</span></a>.
+Double clicking a field with the left or middle mouse button actives the
+right hand side buttons and boxes, which then enables you to look at and
+manipulate the selected field.</p>
+<p>Below this box are 3 buttons which act on the highlighted fields.
+Highlighting fields is performed as follows: clicking with the left mouse
+button will highlight that field without changing any other highlighted entry,
+clicking with the middle mouse button will highlight that entry and all other
+entries will become unhighlighted, clicking with the right mouse button will
+highlight all entries between the current entry and the last entry to be
+highlighted, without changing any other highlighted entry.
+The <strong>Convert</strong> button will convert the highlighted fields into the output
+format and write them to the output file name. The <strong>Delete</strong> button will
+remove the highlighted fields from xconv. The <strong>Copy</strong> button will duplicate
+the highlighted fields.</p>
+<p>The bottom left of the <strong>Xconv main</strong> window contains a box which displays
+any messages produced by xconv. Using the <a class="reference internal" href="setup.html#setup-defaults"><span class="std std-ref">Setup xconv defaults window</span></a>, any xconv
+messages can either be directed to this box or they can go to a terminal window.</p>
+<p>The right hand side buttons and boxes are only active when a single field
+is double clicked with either the left or middle mouse button. The top right
+row of buttons are used to select one of,
+the <a class="reference internal" href="dimension.html#dimension"><span class="std std-ref">Dimension interface</span></a>, the <a class="reference internal" href="names.html#names"><span class="std std-ref">Field and dimension names interface</span></a>, or the <a class="reference internal" href="trans.html#trans"><span class="std std-ref">Transformation/interpolation interface</span></a>.</p>
+<p>Below the buttons used to select the data interface,
+are the x-y button, the <a class="reference internal" href="view.html#view"><span class="std std-ref">View data window</span></a> button and the <a class="reference internal" href="plot.html#plot"><span class="std std-ref">Plot data window</span></a> button.</p>
+<p>Below these three buttons is the main data interface box. When the <a class="reference internal" href="trans.html#trans"><span class="std std-ref">Transformation/interpolation interface</span></a>
+has been selected, double clicking on a single field with the left mouse button
+will fill the box with information from the selected field. Double clicking
+with the middle mouse button will leave the current contents of the box intact.
+This is useful if you wish to interpolate a number of fields to the same
+grid i.e. you do not have to enter the new grid definition for each field.
+Double clicking with the middle mouse button has the same effect as double
+clicking with the left mouse button for the other two interface boxes.</p>
+<p>Below the data interface box are three more buttons <strong>Select all</strong>, <strong>Reset</strong> and
+<strong>Apply</strong>, whose function depends on what data interface is selected.
+The <strong>Select all</strong> button is only active when the <a class="reference internal" href="dimension.html#dimension"><span class="std std-ref">Dimension interface</span></a> is selected
+and will highlight all the dimension values.</p>
+<p>The bottom right of the <strong>Xconv main</strong> window contains a box which displays
+various pieces of information about the selected field.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cmd_line_args.html"
+                        title="previous chapter">Command line arguments</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="open.html"
+                        title="next chapter">Open files window</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/main.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="open.html" title="Open files window"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cmd_line_args.html" title="Command line arguments"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Jeff Cole.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.2.
+    </div>
+  </body>
+</html>

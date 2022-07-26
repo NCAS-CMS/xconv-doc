@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Example 4. Extract various levels from various fields from ERA monthly mean data &#8212; Xconv 1.94 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Example 5. Convert spectral GRIB ERA data into single grid point netCDF file" href="example5.html" />
+    <link rel="prev" title="Example 3. Extract soil temperature data from ERA monthly mean data" href="example3.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="example5.html" title="Example 5. Convert spectral GRIB ERA data into single grid point netCDF file"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="example3.html" title="Example 3. Extract soil temperature data from ERA monthly mean data"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="examples.html" accesskey="U">Example Convsh scripts</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="example-4-extract-various-levels-from-various-fields-from-era-monthly-mean-data">
+<span id="example4"></span><h1>Example 4. Extract various levels from various fields from ERA monthly mean data<a class="headerlink" href="#example-4-extract-various-levels-from-various-fields-from-era-monthly-mean-data" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#! /usr/bin/env convsh
+
+#  Convsh script getuvw.tcl
+#
+#  Extract various levels from various fields in ERA monthly mean,
+#  pressure level GRIB files, where the ERA data is contained in directory
+#  /work/n02/n02/jwc/data on Archer, and write out as a netCDF file.
+
+#  Write out netCDF file
+set outformat netcdf
+
+#  Automatically work out input file type
+set filetype 0
+
+#  Convert omega, u and v to netCDF
+#  (use Xconv on one file to get field numbers)
+set fieldlist &quot;2 5 6&quot;
+
+#  Extract omega (2) on pressure levels 300 mb 500 mb and 700 mb.
+#  (use Xconv on one file to get level numbers)
+set levellist1 &quot;8 10 12&quot;
+
+#  Extract u and v (5 and 6) on pressure levels 200 mb 925 mb and 1000 mb.
+set levellist2 &quot;6 15 16&quot;
+
+#  Era data is contained in /work/n02/n02/jwc/data directory
+set dir /work/n02/n02/jwc/data
+
+#  Read in each of the ERA monthly mean, pressure level files and
+#  write omega, u and v fields to the output file, on specified levels
+
+foreach infile [glob $dir/era-20c_plev_1.125x1.125_*.grib] {
+
+#  Replace input file extension with .nc and append uvw_ to input
+#  file name to get output filename
+   set outfile &quot;uvw_[file tail [file rootname $infile].nc]&quot;
+
+#  Read input file
+   readfile $filetype $infile
+
+#  Set the output level dimensions for the output fields
+   setdim 3 &quot;2&quot; $levellist1
+   setdim 3 &quot;5 6&quot; $levellist2
+
+#  Write out omega, u and v fields to a netCDF file
+   writefile $outformat $outfile $fieldlist
+
+#  Remove input file information from Convsh&#39;s memory
+   clearall
+}
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="example3.html"
+                        title="previous chapter">Example 3. Extract soil temperature data from ERA monthly mean data</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="example5.html"
+                        title="next chapter">Example 5. Convert spectral GRIB ERA data into single grid point netCDF file</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/example4.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="example5.html" title="Example 5. Convert spectral GRIB ERA data into single grid point netCDF file"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="example3.html" title="Example 3. Extract soil temperature data from ERA monthly mean data"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="examples.html" >Example Convsh scripts</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Jeff Cole.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Example 1. Convert files into netCDF format &#8212; Xconv 1.94 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Example 2. Convert multiple files into single netCDF file" href="example2.html" />
+    <link rel="prev" title="Example Convsh scripts" href="examples.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="example2.html" title="Example 2. Convert multiple files into single netCDF file"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Example Convsh scripts"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="examples.html" accesskey="U">Example Convsh scripts</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="example-1-convert-files-into-netcdf-format">
+<span id="example1"></span><h1>Example 1. Convert files into netCDF format<a class="headerlink" href="#example-1-convert-files-into-netcdf-format" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#! /usr/bin/env convsh
+
+#  Convsh script conv2nc_1to1.tcl
+#
+#  Convert each file, into a corresponding netCDF file.
+#  File names are taken from the command arguments.
+#  For example to convert all PP files in the current directory
+#  into netCDF files use the following command:
+#
+#      ./conv2nc_1to1.tcl *.pp
+
+#  Write out netCDF file
+set outformat netcdf
+
+#  Automatically work out input file type
+set filetype 0
+
+#  Convert all fields in input files to netCDF
+set fieldlist -1
+
+#  Read in each of the input files and write output file
+
+foreach infile $argv {
+
+#  Replace input file extension with .nc to get output filename
+   set outfile [file tail [file rootname $infile].nc]
+
+#  Read input file
+   readfile $filetype $infile
+
+#  Write out all input fields to a netCDF file
+   writefile $outformat $outfile $fieldlist
+
+#  Remove input file information from Convsh&#39;s memory
+   clearall
+}
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="examples.html"
+                        title="previous chapter">Example Convsh scripts</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="example2.html"
+                        title="next chapter">Example 2. Convert multiple files into single netCDF file</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/example1.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="example2.html" title="Example 2. Convert multiple files into single netCDF file"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Example Convsh scripts"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="examples.html" >Example Convsh scripts</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Jeff Cole.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.2.
+    </div>
+  </body>
+</html>

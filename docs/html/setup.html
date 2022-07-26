@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Setup xconv windows &#8212; Xconv 1.94 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Horizontal and vertical axes menu" href="axes.html" />
+    <link rel="prev" title="Open files window" href="open.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="axes.html" title="Horizontal and vertical axes menu"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="open.html" title="Open files window"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="setup-xconv-windows">
+<span id="setup"></span><h1>Setup xconv windows<a class="headerlink" href="#setup-xconv-windows" title="Permalink to this headline">¶</a></h1>
+<p>Clicking on the <strong>Setup</strong> button in the main xconv window brings up a menu
+window to select one of four xconv setup options.</p>
+<img alt="Setup xconv menu window" src="_images/xconv_1.93_setup_menu.png" />
+<p>Each of the four setup windows have the same five buttons along the bottom row,
+these buttons have the following functions.
+<strong>Apply</strong> applies any changes to the current xconv session only.
+<strong>Save</strong> applies any changes to the current xconv session and writes them
+to a file called .xconvrc in your home directory. This file is read every time
+xconv is started, hence any changes made will become permanent.
+<strong>Default</strong> resets xconv back to a default state.
+<strong>Reset</strong> resets xconv back to the state it was in when <strong>Apply</strong> or
+<strong>Save</strong> was last clicked.
+<strong>Dismiss</strong> removes the setup window.</p>
+<div class="section" id="setup-xconv-defaults-window">
+<span id="setup-defaults"></span><h2>Setup xconv defaults window<a class="headerlink" href="#setup-xconv-defaults-window" title="Permalink to this headline">¶</a></h2>
+<img alt="Setup xconv defaults window" src="_images/xconv_1.93_setup_defaults.png" />
+<p>This window is used to customise various aspects of xconv, including fonts,
+colours and output options.</p>
+</div>
+<div class="section" id="setup-stash-master-files-window">
+<span id="setup-stash"></span><h2>Setup STASH master files window<a class="headerlink" href="#setup-stash-master-files-window" title="Permalink to this headline">¶</a></h2>
+<img alt="Setup STASH master files window" src="_images/xconv_1.93_setup_STASHmaster.png" />
+<p>Xconv has internally stored information extracted from Unified Model STASHmaster
+files, this window allows additional user STASHmaster files to be added. This
+enables xconv to display the correct field title for unknown STASH codes. Xconv includes information from STASHmaster files for model versions 4.0 - 10.2.</p>
+</div>
+<div class="section" id="setup-netcdf-attributes-window">
+<span id="setup-netcdf-att"></span><h2>Setup netCDF attributes window<a class="headerlink" href="#setup-netcdf-attributes-window" title="Permalink to this headline">¶</a></h2>
+<img alt="Setup netcdf attributes window" src="_images/xconv_1.93_setup_netcdf_att.png" />
+<p>Select the netCDF attributes to include when xconv writes netCDF files. The
+<strong>cond</strong> option means xconv will only include this attribute when there is data
+available or when the attribute value is different from the assumed default
+value.</p>
+</div>
+<div class="section" id="setup-netcdf-global-attributes-window">
+<span id="setup-netcdf-glob-att"></span><h2>Setup netCDF global attributes window<a class="headerlink" href="#setup-netcdf-global-attributes-window" title="Permalink to this headline">¶</a></h2>
+<img alt="Setup netcdf global attributes window" src="_images/xconv_1.93_setup_netcdf_glob_att.png" />
+<p>Select the global netCDF attributes to include when xconv writes netCDF files
+and enter the attribute string you wish to see written. All global netCDF
+attributes are optional except <strong>history</strong> which has a default value of</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">history</span> <span class="o">=</span> <span class="s2">&quot;Thu Oct 15 16:37:17 BST 2015 - XCONV V1.93 13-October-2015&quot;</span> <span class="p">;</span>
+</pre></div>
+</div>
+<p>The first part of the string will be the date and time the netCDF file was
+written and the second part is the xconv version used and the release date for
+this version. Any <strong>history</strong> attribute added in this window will be appended
+to the above string.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Setup xconv windows</a><ul>
+<li><a class="reference internal" href="#setup-xconv-defaults-window">Setup xconv defaults window</a></li>
+<li><a class="reference internal" href="#setup-stash-master-files-window">Setup STASH master files window</a></li>
+<li><a class="reference internal" href="#setup-netcdf-attributes-window">Setup netCDF attributes window</a></li>
+<li><a class="reference internal" href="#setup-netcdf-global-attributes-window">Setup netCDF global attributes window</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="open.html"
+                        title="previous chapter">Open files window</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="axes.html"
+                        title="next chapter">Horizontal and vertical axes menu</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/setup.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="axes.html" title="Horizontal and vertical axes menu"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="open.html" title="Open files window"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Jeff Cole.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.2.
+    </div>
+  </body>
+</html>

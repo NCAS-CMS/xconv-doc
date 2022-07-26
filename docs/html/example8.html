@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Example 8. Convert vorticity/divergence spectral data into stream function/velocity potential grid point data &#8212; Xconv 1.94 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Example 9. Convert multiple files into single 64-bit netCDF4 file using CF metadata" href="example9.html" />
+    <link rel="prev" title="Example 7. Convert spectral GRIB ERA data into UM LAM grid netCDF file" href="example7.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="example9.html" title="Example 9. Convert multiple files into single 64-bit netCDF4 file using CF metadata"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="example7.html" title="Example 7. Convert spectral GRIB ERA data into UM LAM grid netCDF file"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="examples.html" accesskey="U">Example Convsh scripts</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="example-8-convert-vorticity-divergence-spectral-data-into-stream-function-velocity-potential-grid-point-data">
+<span id="example8"></span><h1>Example 8. Convert vorticity/divergence spectral data into stream function/velocity potential grid point data<a class="headerlink" href="#example-8-convert-vorticity-divergence-spectral-data-into-stream-function-velocity-potential-grid-point-data" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#! /usr/bin/env convsh
+
+#  Convsh script delm2.tcl
+#
+#  Convert ERA vorticity/divergence spectral data into
+#  stream function/velocity potential grid point data.
+#  Output format is netCDF.
+#  For example:
+#
+#      delm2.tcl -i sppr90122600 -o sppr_delm2.nc
+
+#  Write out netCDF file
+set outformat netcdf
+
+#  Automatically work out input file type
+set filetype 0
+
+#  Get command line arguments:
+#      -i input files (can be more than one file)
+#      -o output file (single file only)
+
+set i false
+set o false
+foreach arg $argv {
+   switch -glob -- $arg {
+      -i      {set i true ; set o false}
+      -o      {set i false ; set o true}
+      -*      {puts &quot;unknown option $arg&quot; ; set i false; set o false}
+      default {
+         if {$i} {
+            set infile [lappend infile $arg]
+         } elseif {$o} {
+            set outfile [lappend outfile $arg]
+         } else {
+            puts &quot;unknown option $arg&quot;
+         }
+      }
+   }
+}
+
+if {! [info exists infile]} {
+   puts &quot;input file name must be given&quot;
+   exit
+}
+
+if {[info exists outfile]} {
+   if {[llength $outfile] &gt; 1} {
+      set outfile [lindex $outfile 0]
+      puts &quot;Only one output file can be specified, using $outfile&quot;
+   }
+} else {
+   puts &quot;output file name must be given&quot;
+   exit
+}
+
+#  Read in each of the input files
+
+foreach file $infile {
+   readfile $filetype $file
+}
+
+# Select subset of levels
+set levellist &quot;2 7&quot;
+
+# Set output grid type
+setgridtype gaussian
+
+# Set output grid
+setgrid 1 320 0.0 1.125
+setgrid 2 160
+
+# Create Stream function field
+
+set vorid [lsearch -exact [get_shortname -1] VO]
+set sfid [copyfields $vorid]
+set_longname $sfid &quot;Stream function&quot;
+set_shortname $sfid &quot;STRF&quot;
+set_standardname $sfid &quot;atmosphere_horizontal_streamfunction&quot;
+set_unit $sfid &quot;m**2 s**-1&quot;
+
+# Apply del-2 to convert vorticity into stream function
+delm2 $sfid
+
+# Create Velocity potential field
+
+set divid [lsearch -exact [get_shortname -1] D]
+set vpid [copyfields $divid]
+set_longname $vpid &quot;Velocity potential&quot;
+set_shortname $vpid &quot;VPOT&quot;
+set_standardname $vpid &quot;atmosphere_horizontal_velocity_potential&quot;
+set_unit $vpid &quot;m**2 s**-1&quot;
+
+# Apply del-2 to convert divergence into velocity potential
+delm2 $vpid
+
+#  Convert vorid sf div vp fields in input files to netCDF
+set fieldlist [list $vorid $sfid $divid $vpid]
+
+#  Transform data from spectral harmonics to grid point field
+spec_trans $fieldlist
+
+list_fields
+
+#  Set the output level dimensions for the output fields
+setdim 3 $fieldlist $levellist
+
+#  Write out vorid sf div vp input fields to a single netCDF file
+
+writefile $outformat $outfile $fieldlist
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="example7.html"
+                        title="previous chapter">Example 7. Convert spectral GRIB ERA data into UM LAM grid netCDF file</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="example9.html"
+                        title="next chapter">Example 9. Convert multiple files into single 64-bit netCDF4 file using CF metadata</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/example8.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="example9.html" title="Example 9. Convert multiple files into single 64-bit netCDF4 file using CF metadata"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="example7.html" title="Example 7. Convert spectral GRIB ERA data into UM LAM grid netCDF file"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="examples.html" >Example Convsh scripts</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Jeff Cole.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.2.
+    </div>
+  </body>
+</html>

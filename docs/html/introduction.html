@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Introduction &#8212; Xconv 1.94 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Download Xconv" href="download.html" />
+    <link rel="prev" title="Xconv (version 1.94)" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="download.html" title="Download Xconv"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Xconv (version 1.94)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction">
+<span id="id1"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>Xconv is a program designed to convert model output into a format suitable
+for use in various plotting packages. Xconv is designed to be simple to use
+with a point and click, windows based interface. Xconv can read data in the
+following formats:</p>
+<ul class="simple">
+<li><p>Data output from the Met. Office Unified Model</p></li>
+<li><p>Met. Office PP format</p></li>
+<li><p>GRIB format (Edition 1 and 2)</p></li>
+<li><p>NetCDF format (classic, 64-bit offset and netCDF-4 classic model)</p></li>
+<li><p>Grads format</p></li>
+</ul>
+<p>The following output formats are supported by xconv:</p>
+<ul class="simple">
+<li><p>NetCDF format (classic, 64-bit offset and netCDF-4 classic model)</p></li>
+<li><p>Grads format</p></li>
+</ul>
+<p>Xconv can be used to see what fields are contained within a data file
+and to look at the data values, either directly at the numerical values or
+at a grid box fill plot of the data. xconv can also be used to manipulate the
+input data before it is converted into the output format. Data manipulations
+available are:</p>
+<ul class="simple">
+<li><p>Spectral data can be transformed to grid point data</p></li>
+<li><p>The inverse Laplacian operator can be applied to spectral data</p></li>
+<li><p>Grid point data can interpolated onto a different grid using either bilinear interpolation or area weighted interpolation</p></li>
+<li><p>Data which is on a rotated grid can be unrotated, plus normal gridded data can be put on a rotated grid.</p></li>
+<li><p>Data values can be extrapolated over missing data values</p></li>
+<li><p>Zonal and meridonal means can be computed</p></li>
+<li><p>The missing data value can be changed</p></li>
+</ul>
+<p>Also available is convsh, which allows scripts to be written to automate
+various xconv tasks. Convsh uses the
+<a class="reference external" href="http://www.tcl.tk/man/tcl8.6/TclCmd/contents.htm">tcl scripting language</a>,
+plus various extensions for reading, writing and manipulating data files.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Xconv (version 1.94)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="download.html"
+                        title="next chapter">Download Xconv</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/introduction.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="download.html" title="Download Xconv"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Xconv (version 1.94)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Jeff Cole.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.2.
+    </div>
+  </body>
+</html>

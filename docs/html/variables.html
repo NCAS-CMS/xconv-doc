@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Convsh variables &#8212; Xconv 1.94 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running Convsh scripts" href="run.html" />
+    <link rel="prev" title="Convsh commands" href="commands.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="run.html" title="Running Convsh scripts"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="commands.html" title="Convsh commands"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="convsh-variables">
+<span id="variables"></span><h1>Convsh variables<a class="headerlink" href="#convsh-variables" title="Permalink to this headline">¶</a></h1>
+<p>Below is a list of variables which control how convsh does certain functions</p>
+<dl>
+<dt><strong>bswap64</strong></dt><dd><p>This boolean value needs to be set to true if 64 bit IEEE UM files have
+been byte swapped and the files contain 32 bit packed data.
+The default value is false.</p>
+</dd>
+<dt><strong>change_mdi</strong></dt><dd><p>Boolean value to control whether the missing data values are changed when
+writing to a file. See <strong>mdival</strong> for the new missing data value. The
+default value is true.</p>
+</dd>
+<dt><strong>griblib</strong></dt><dd><p>Selects which library is used to decode GRIB1 data</p>
+<div class="line-block">
+<div class="line"><em>0</em>  : ECMWF GRIBEX library (default)</div>
+<div class="line"><em>1</em>  : ECMWF GRIB_API library</div>
+</div>
+</dd>
+<dt><strong>grotype</strong></dt><dd><p>Selects the binary data type for grads output files</p>
+<div class="line-block">
+<div class="line"><em>0</em>  : Stream/Direct access (default)</div>
+<div class="line"><em>1</em>  : Sequential (contains Fortran record length headers)</div>
+</div>
+</dd>
+<dt><strong>mdival</strong></dt><dd><p>If <strong>change_mdi</strong> is true set <strong>mdival</strong> to the new missing data value.
+The default value is 2.0e20.</p>
+</dd>
+<dt><strong>ncoformat</strong></dt><dd><p>Selects the output netCDF format type, the values are</p>
+<div class="line-block">
+<div class="line"><em>0</em>  : classic model (default)</div>
+<div class="line"><em>1</em>  : 64-bit offset</div>
+<div class="line"><em>2</em>  : netCDF-4 classic model</div>
+</div>
+</dd>
+<dt><strong>ncprec</strong></dt><dd><p>Selects the floating point format of netCDF dimensions and
+variables, the values are</p>
+<div class="line-block">
+<div class="line"><em>32</em> : 32 bit IEEE (default)</div>
+<div class="line"><em>64</em> : 64 bit IEEE</div>
+</div>
+</dd>
+<dt><strong>red_gauss_conv</strong></dt><dd><p>Selects the method for converting reduced
+Gaussian GRIB data to full Gaussian GRIB data</p>
+<div class="line-block">
+<div class="line"><em>0</em>  : No conversion done</div>
+<div class="line"><em>1</em>  : Linear interpolation (default)</div>
+<div class="line"><em>3</em>  : Cubic interpolation</div>
+</div>
+</dd>
+<dt><strong>umdate</strong></dt><dd><p>Selects how the time dimension for UM ancillary files is created</p>
+<div class="line-block">
+<div class="line"><em>0</em>  : Uses PP headers</div>
+<div class="line"><em>1</em>  : Uses Fixed length header (default)</div>
+</div>
+</dd>
+<dt><strong>umlong</strong></dt><dd><p>Selects how the long names of variables from UM/PP files are
+generated, the values are</p>
+<div class="line-block">
+<div class="line"><em>0</em>  : Uses PP field code (default)</div>
+<div class="line"><em>1</em>  : Uses STASH code</div>
+</div>
+</dd>
+</dl>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="commands.html"
+                        title="previous chapter">Convsh commands</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="run.html"
+                        title="next chapter">Running Convsh scripts</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/variables.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="run.html" title="Running Convsh scripts"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="commands.html" title="Convsh commands"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Xconv 1.94 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Jeff Cole.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.2.
+    </div>
+  </body>
+</html>

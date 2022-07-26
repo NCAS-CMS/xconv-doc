@@ -1,0 +1,14 @@
+1.93
+
+1.94
+
+Update to UM 10.5 metadata
+
+Remove obsolete commands for reading user STASHmaster files
+
+Select correct CF standard_name for UM rotated vector fields
+
+Read ensemble member number for GRIB2 data
+
+Fix latitude values for UM endgame variable resolution grids
+
